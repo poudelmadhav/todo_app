@@ -37,7 +37,7 @@ class _TodoListState extends State<TodoList> {
           elevation: 2.0,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.red,
+              backgroundColor: getColor(this.todos[position].priority),
               child: Text(
                 this.todos[position].priority.toString(),
               ),
@@ -73,5 +73,21 @@ class _TodoListState extends State<TodoList> {
         debugPrint("Items " + count.toString());
       });
     });
+  }
+
+  Color getColor(int priority) {
+    switch (priority) {
+      case 1:
+        return Colors.red;
+        break;
+      case 2:
+        return Colors.orange;
+        break;
+      case 3:
+        return Colors.green;
+        break;
+      default:
+        return Colors.green;
+    }
   }
 }
