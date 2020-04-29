@@ -27,7 +27,9 @@ class Todo {
   }
 
   set date (String newDate) {
-    _date = newDate;
+    if(newDate != null) {
+      date = newDate;
+    }
   }
 
   set priority (int newPriority) {
@@ -42,6 +44,7 @@ class Todo {
     map['description'] = _description;
     map['title'] = _title;
     map['date'] = _date;
+    map['priority'] = _priority;
 
     if (id != null) {
       map['id'] = _id;
