@@ -8,11 +8,12 @@ class TodoDetail extends StatefulWidget {
   TodoDetail(this.todo);
 
   @override
-  _TodoDetailState createState() => _TodoDetailState();
+  _TodoDetailState createState() => _TodoDetailState(todo);
 }
 
 class _TodoDetailState extends State<TodoDetail> {
   Todo todo;
+  _TodoDetailState(this.todo);
   final _priorities = ["High", "Medium", "Low"];
   String _priority = "Low";
   TextEditingController titleController = TextEditingController();
@@ -24,45 +25,53 @@ class _TodoDetailState extends State<TodoDetail> {
     descriptionController.text = todo.description;
     TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text(todo.title),
-        ),
-        body: Column(
-          children: <Widget>[
-            TextField(
-              controller: titleController,
-              style: textStyle,
-              decoration: InputDecoration(
-                labelText: "TItle",
-                labelStyle: textStyle,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(todo.title),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              TextField(
+                controller: titleController,
+                style: textStyle,
+                decoration: InputDecoration(
+                  labelText: "Title",
+                  labelStyle: textStyle,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
                 ),
               ),
-            ),
-            TextField(
-              controller: descriptionController,
-              style: textStyle,
-              decoration: InputDecoration(
-                labelText: "Description",
-                labelStyle: textStyle,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+              TextField(
+                controller: descriptionController,
+                style: textStyle,
+                decoration: InputDecoration(
+                  labelText: "Description",
+                  labelStyle: textStyle,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
                 ),
               ),
-            ),
-            DropdownButton<String>(
-              items: _priorities.map((String value) {
-                return DropdownMenuItem<String>(
-                  child: Text(value),
-                );
-              }).toList(),
-              style: textStyle,
-              value: "Low",
-              onChanged: null,
-            )
-          ],
-        ));
+              ListTile(
+                title: DropdownButton<String>(
+                  items: _priorities.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  style: textStyle,
+                  value: "Low",
+                  onChanged: null,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
