@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 DbHelper helper = DbHelper();
 
-final List<String> choices = const <String> [
+final List<String> choices = const <String>[
   'Save Todo and Back',
   'Delete Todo',
   'Back to List'
@@ -60,6 +60,7 @@ class _TodoDetailState extends State<TodoDetail> {
           children: <Widget>[
             Column(
               children: <Widget>[
+                SizedBox(height: 3),
                 TextField(
                   controller: titleController,
                   style: textStyle,
@@ -99,6 +100,16 @@ class _TodoDetailState extends State<TodoDetail> {
                     onChanged: (value) => updatePriority(value),
                   ),
                 ),
+                ListTile(
+                  title: RaisedButton(
+                    color: Colors.deepOrange,
+                    onPressed: () { save(); },
+                    child: Text(
+                      'Save',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
@@ -107,7 +118,7 @@ class _TodoDetailState extends State<TodoDetail> {
     );
   }
 
-  void select (String value) async {
+  void select(String value) async {
     int result;
     switch (value) {
       case mnuSave:
@@ -131,8 +142,8 @@ class _TodoDetailState extends State<TodoDetail> {
         }
         break;
       case mnuBack:
-          Navigator.pop(context,true);
-          break;
+        Navigator.pop(context, true);
+        break;
     }
   }
 
@@ -172,6 +183,6 @@ class _TodoDetailState extends State<TodoDetail> {
   }
 
   void updateDescription() {
-    todo.description= descriptionController.text;
+    todo.description = descriptionController.text;
   }
 }
