@@ -11,8 +11,8 @@ class Todo {
   int get id => _id;
   String get title => _title;
   String get description => _description;
-  String get date => _date;
   int get priority => _priority;
+  String get date => _date;
 
   set title (String newTitle) {
     if (newTitle.length <= 255 ) {
@@ -27,9 +27,7 @@ class Todo {
   }
 
   set date (String newDate) {
-    if(newDate != null) {
-      date = newDate;
-    }
+    _date = newDate;
   }
 
   set priority (int newPriority) {
@@ -46,7 +44,7 @@ class Todo {
     map['date'] = _date;
     map['priority'] = _priority;
 
-    if (id != null) {
+    if (_id != null) {
       map['id'] = _id;
     }
 

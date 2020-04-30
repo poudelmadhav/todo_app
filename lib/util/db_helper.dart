@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
+import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:todo_app/model/todo.dart';
 
@@ -33,7 +32,7 @@ class DbHelper {
 
   Future<Database> initializeDb() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = dir.path + 'todo.db';
+    String path = dir.path + 'todos.db';
     var todos = await openDatabase(path, version: 1, onCreate: _createDb);
     return todos;
   }
