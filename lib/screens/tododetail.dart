@@ -72,6 +72,7 @@ class _TodoDetailState extends State<TodoDetail> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
                 TextField(
                   controller: descriptionController,
                   style: textStyle,
@@ -84,6 +85,7 @@ class _TodoDetailState extends State<TodoDetail> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
                 ListTile(
                   title: DropdownButton<String>(
                     items: _priorities.map((String value) {
